@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de Nuestro Mes 💖</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+    <link rel="icon" href="recursos/icono/icons8-heart-48.png" type="image/png" />
+</head>
+
+<body>
+    <div class="welcome-screen" id="welcomeScreen">
+        <h1>Hola mi amor 💕</h1>
+        <p>Bienvenida a tu detalle especial de este mes</p>
+        <button onclick="entrar()">Entrar</button>
+    </div>
+
+    <main id="mainContent" style="display: none;">
+        <section id="calendarSection">
+            <h2>Selecciona el mes</h2>
+            <div class="months">
+                <button onclick="abrirMes('Julio')">Julio</button>
+                <!-- Agrega más meses según avances -->
+            </div>
+        </section>
+
+        <section id="detalleMes" style="display: none;">
+            <h2 id="tituloMes">Detalle de Julio</h2>
+
+            <div class="contenido-mes">
+                <div id="contadorDias"></div>
+
+                <div class="carta">
+                    <h3>Carta para ti ✍️</h3>
+                    <button onclick="mostrarCarta()">Abrir carta</button>
+                    <p id="textoCarta" class="oculto"></p>
+                </div>
+
+                <div class="galeria">
+                    <h3>Recuerdos 📸</h3>
+                    <div class="imagenes">
+                        <!-- Aquí van imágenes -->
+                        <img src="img1.jpg" alt="Recuerdo 1" />
+                        <img src="img2.jpg" alt="Recuerdo 2" />
+                    </div>
+                </div>
+
+                <div class="musica">
+                    <h3>Nuestra canción 🎵</h3>
+                    <audio controls>
+                        <source src="tu-cancion.mp3" type="audio/mpeg" />
+                        Tu navegador no soporta audio.
+                    </audio>
+                </div>
+
+                <div class="sorpresa">
+                    <h3>Sorpresa secreta 🔒</h3>
+                    <input type="text" placeholder="Clave mágica" id="claveInput" />
+                    <button onclick="verSorpresa()">Ver</button>
+                    <div id="contenidoSecreto" class="oculto">
+                        <p>🎁 ¡Sorpresa desbloqueada! Mira este video:</p>
+                        <video width="300" controls>
+                            <source src="video-sorpresa.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+
+                <div class="juego">
+                    <h3>🎮 ¿Qué tanto me conoces?</h3>
+                    <div id="preguntaJuego"></div>
+                    <div id="opcionesJuego"></div>
+                    <div id="resultadoJuego" class="oculto"></div>
+                </div>
+
+                <div class="diario">
+                    <h3>📖 Nuestro diario del mes</h3>
+                    <textarea id="diarioTexto" placeholder="Escribe aquí tus pensamientos del mes..."></textarea>
+                    <br />
+                    <button onclick="guardarDiario()">Guardar</button>
+                    <p id="mensajeGuardado" class="oculto">Guardado correctamente ✅</p>
+                </div>
+
+                <div class="puzzle">
+                    <h3>🧩 Puzzle romántico</h3>
+                    <div id="puzzleContainer"></div>
+                    <p id="puzzleMensaje" class="oculto">¡Lo lograste! 💕</p>
+                </div>
+
+
+
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>
