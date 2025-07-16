@@ -15,7 +15,7 @@ function abrirMes(nombreMes) {
     iniciarJuego(); // 🧠
     cargarDiario(); // 📖
     crearPuzzle(); // 🧩
-    restaurarProgreso();
+    // restaurarProgreso();
 }
 
 function mostrarCarta() {
