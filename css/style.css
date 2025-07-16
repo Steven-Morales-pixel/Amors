@@ -44,7 +44,8 @@ button {
 }
 
 .imagenes img {
-    width: 150px;
+    width: 250px;
+    height: 300px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 100, 150, 0.5);
 }
@@ -180,18 +181,24 @@ button {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* 3x3 */
     grid-template-rows: repeat(3, 1fr);
     gap: 2px;
+    border: 2px solid #ccc;
+    background-color: #fdfdfd;
 }
 
 .pieza {
     width: 100%;
     height: 100%;
     background-size: 300px 300px;
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: grab;
     border-radius: 4px;
+    border: 1px solid #999;
 }
+
+
 
 #textoCarta {
     white-space: pre-line;
@@ -203,4 +210,16 @@ button {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+}
+
+iframe {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.musica iframe {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 12px;
 }

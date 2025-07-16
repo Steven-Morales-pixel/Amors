@@ -6,13 +6,14 @@ function entrar() {
 }
 
 function abrirMes(nombreMes) {
+    mesActual = nombreMes;
     document.getElementById("detalleMes").style.display = "block";
     document.getElementById("tituloMes").innerText = `Detalle de ${nombreMes}`;
     lanzarConfeti(); // 🎉
     iniciarJuego(); // 🧠
     cargarDiario(); // 📖
-    restaurarProgreso();
     crearPuzzle(); // 🧩
+    restaurarProgreso();
 }
 
 function mostrarCarta() {
@@ -27,7 +28,7 @@ Te amo 💖`;
     const elemento = document.getElementById("textoCarta");
 
     // Guardar que fue abierta
-    localStorage.setItem("cartaAbiertaJulio", "true");
+    localStorage.setItem(`diarioMes${mesActual}`, texto);
 
     elemento.classList.remove("oculto");
     typeEffect(elemento, carta);
@@ -59,7 +60,7 @@ function contarDias() {
 
 function verSorpresa() {
     const clave = document.getElementById("claveInput").value;
-    if (clave.toLowerCase() === "teamo") {
+    if (clave.toLowerCase() === "te amo") {
         document.getElementById("contenidoSecreto").classList.remove("oculto");
         localStorage.setItem("sorpresaJulio", "true"); // ✅ guardar desbloqueo
     } else {
@@ -99,51 +100,51 @@ function generarCorazones() {
 }
 
 const preguntas = [
-  {
-    pregunta: "¿Mi comida favorita es la hamburguesa?",
-    opciones: ["Sí", "No"],
-    correcta: 0,
-  },
-  {
-    pregunta: "¿Me gusta más el frío que el calor?",
-    opciones: ["Sí", "No"],
-    correcta: 0,
-  },
-  {
-    pregunta: "¿Prefiero los perros antes que los gatos?",
-    opciones: ["Sí", "No"],
-    correcta: 1,
-  },
-  {
-    pregunta: "¿Mi color favorito es el azul?",
-    opciones: ["Verdadero", "Falso"],
-    correcta: 1,
-  },
-  {
-    pregunta: "¿Soy más de videojuegos que de películas?",
-    opciones: ["Sí", "No"],
-    correcta: 0,
-  },
-  {
-    pregunta: "¿El primer regalo que te di fue una sala?",
-    opciones: ["Sí", "No"],
-    correcta: 0,
-  },
-  {
-    pregunta: "¿Uso perfume todos los días?",
-    opciones: ["Sí", "No"],
-    correcta: 1,
-  },
-  {
-    pregunta: "¿Mi estación favorita es el invierno?",
-    opciones: ["Sí", "No"],
-    correcta: 0,
-  },
-  {
-    pregunta: "¿Mi bebida favorita es el jugo de limon?",
-    opciones: ["Sí", "No"],
-    correcta: 0,
-  },
+    {
+        pregunta: "¿Mi comida favorita es la hamburguesa?",
+        opciones: ["Sí", "No"],
+        correcta: 0,
+    },
+    {
+        pregunta: "¿Me gusta más el frío que el calor?",
+        opciones: ["Sí", "No"],
+        correcta: 0,
+    },
+    {
+        pregunta: "¿Prefiero los perros antes que los gatos?",
+        opciones: ["Sí", "No"],
+        correcta: 1,
+    },
+    {
+        pregunta: "¿Mi color favorito es el azul?",
+        opciones: ["Verdadero", "Falso"],
+        correcta: 1,
+    },
+    {
+        pregunta: "¿Soy más de videojuegos que de películas?",
+        opciones: ["Sí", "No"],
+        correcta: 0,
+    },
+    {
+        pregunta: "¿El primer regalo que te di fue una sala?",
+        opciones: ["Sí", "No"],
+        correcta: 0,
+    },
+    {
+        pregunta: "¿Uso perfume todos los días?",
+        opciones: ["Sí", "No"],
+        correcta: 1,
+    },
+    {
+        pregunta: "¿Mi estación favorita es el invierno?",
+        opciones: ["Sí", "No"],
+        correcta: 0,
+    },
+    {
+        pregunta: "¿Mi bebida favorita es el jugo de limon?",
+        opciones: ["Sí", "No"],
+        correcta: 0,
+    },
 ];
 
 
@@ -201,27 +202,22 @@ function guardarDiario() {
 }
 
 function cargarDiario() {
-    const textoGuardado = localStorage.getItem("diarioMesJulio");
+    const textoGuardado = localStorage.getItem(`diarioMes${mesActual}`);
     if (textoGuardado) {
         document.getElementById("diarioTexto").value = textoGuardado;
     }
 }
 
-function restaurarProgreso() {
-    // Carta
-    const yaAbrioCarta = localStorage.getItem("cartaAbiertaJulio") === "true";
-    if (yaAbrioCarta) {
-        // Solo guardamos el estado, no la mostramos
-        // La mostrará si presiona el botón
-    }
-
-
-    // Sorpresa secreta
-    const sorpresaDesbloqueada = localStorage.getItem("sorpresaJulio") === "true";
-    if (sorpresaDesbloqueada) {
-        document.getElementById("contenidoSecreto").classList.remove("oculto");
-    }
+const yaAbrioCarta = localStorage.getItem(`cartaAbierta${mesActual}`) === "true";
+if (yaAbrioCarta) {
+    // Lógica de mostrar carta
 }
+
+const sorpresaDesbloqueada = localStorage.getItem(`sorpresa${mesActual}`) === "true";
+if (sorpresaDesbloqueada) {
+    document.getElementById("contenidoSecreto").classList.remove("oculto");
+}
+
 
 const filas = 3;
 const columnas = 3;
@@ -230,6 +226,10 @@ const totalPiezas = filas * columnas;
 function crearPuzzle() {
     const contenedor = document.getElementById("puzzleContainer");
     contenedor.innerHTML = ""; // limpiar si ya existía
+
+    const filas = 3;
+    const columnas = 3;
+    const totalPiezas = filas * columnas;
 
     const piezas = [];
 
@@ -240,7 +240,7 @@ function crearPuzzle() {
         const pieza = document.createElement("div");
         pieza.classList.add("pieza");
         pieza.setAttribute("draggable", true);
-        pieza.style.backgroundImage = "url('nosotros.jpg')"; // usa tu imagen
+        pieza.style.backgroundImage = "url('recursos/imagenes/rec1.jpg')";
         pieza.style.backgroundPosition = `-${columna * 100}px -${fila * 100}px`;
         pieza.dataset.index = i;
 
@@ -257,7 +257,10 @@ function crearPuzzle() {
         pieza.addEventListener("drop", soltarPieza);
         contenedor.appendChild(pieza);
     });
+
+    console.log("✅ Puzzle creado con rec1.jpg");
 }
+
 
 function arrastrarInicio(e) {
     e.dataTransfer.setData("text/plain", e.target.dataset.index);
