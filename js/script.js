@@ -1,3 +1,5 @@
+let mesActual = "";
+
 function entrar() {
     document.getElementById("welcomeScreen").style.display = "none";
     document.getElementById("mainContent").style.display = "block";
@@ -12,11 +14,16 @@ function abrirMes(nombreMes) {
     lanzarConfeti(); // 🎉
     iniciarJuego(); // 🧠
     cargarDiario(); // 📖
-    crearPuzzle(); // 🧩
     restaurarProgreso();
+    crearPuzzle(); // 🧩
 }
 
 function mostrarCarta() {
+    if (!mesActual) {
+        alert("Primero selecciona el mes 💌");
+        return;
+    }
+
     const carta = `Mi amor:
 
 Este mes contigo ha sido mágico. Gracias por cada momento, por tu risa, tus besos y tu amor.
@@ -27,12 +34,12 @@ Te amo 💖`;
 
     const elemento = document.getElementById("textoCarta");
 
-    // Guardar que fue abierta
-    localStorage.setItem(`diarioMes${mesActual}`, texto);
+    localStorage.setItem(`cartaAbierta${mesActual}`, "true");
 
     elemento.classList.remove("oculto");
     typeEffect(elemento, carta);
 }
+
 
 
 
