@@ -14,8 +14,8 @@ function abrirMes(nombreMes) {
     lanzarConfeti(); // 🎉
     iniciarJuego(); // 🧠
     cargarDiario(); // 📖
-    restaurarProgreso();
     crearPuzzle(); // 🧩
+    restaurarProgreso();
 }
 
 function mostrarCarta() {
