@@ -247,7 +247,7 @@ function crearPuzzle() {
         const pieza = document.createElement("div");
         pieza.classList.add("pieza");
         pieza.setAttribute("draggable", true);
-        pieza.style.backgroundImage = "url('recursos/imagenes/rec1.jpg')";
+        pieza.style.backgroundImage = "url('../recursos/imagenes/rec1.jpg')";
         pieza.style.backgroundPosition = `-${columna * 100}px -${fila * 100}px`;
         pieza.dataset.index = i;
 
