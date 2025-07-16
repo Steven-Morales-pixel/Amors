@@ -190,8 +190,7 @@ button {
 .pieza {
     width: 100%;
     height: 100%;
-    background-size: cover;
-    /* ⬅️ o prueba con 'contain' */
+    background-size: 300px 300px;
     background-repeat: no-repeat;
     background-position: center;
     cursor: grab;
